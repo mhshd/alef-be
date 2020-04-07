@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="direction: rtl">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+                <div class="card-header" style="text-align: right">{{ __('تکرار رمز عبور') }}</div>
 
                 <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
+                    {{ __('لطفا قبل از ادامه کار رمز عبور خود را تایید کنید') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
@@ -30,12 +30,12 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                                    {{ __('تکرار رمز عبور') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('رمز عبور خود را فارموش کرده اید؟') }}
                                     </a>
                                 @endif
                             </div>

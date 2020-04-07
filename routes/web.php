@@ -12,14 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/post/create', 'postController@create')->name('post.create');
 Route::post('/post/store', 'postController@store')->name('post.store');
-Route::get('/posts', 'HomeController@index')->name('posts');
-Route::get('/UserProfile','HomeController@ShowUserSetting')->name('userProfile');
+Route::get('/post/delete/{id}', 'postController@delete')->name('post.delete');
+Route::get('/post/create', 'postController@create')->name('post.create');
+Route::get('/search','postController@search')->name('search');
+Route::get('/critic', 'postController@critic')->name('critic');
+Route::get('/introduce', 'postController@introduce')->name('introduce');
+Route::get('/drafts', 'postController@drafts')->name('drafts');
+Route::get('/posts', 'HomeController@home')->name('posts');
 Route::get('/post/show/{id}', 'postController@show')->name('post.show');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
+
 Auth::routes();
 
+Route::get('/', 'HomeController@home')->name('home');

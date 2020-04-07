@@ -10880,5 +10880,19 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
+    body{
+        background-image: url("../pic/back.png");
+        font-family: sans-serif;
+    }
+    .butt{
+        background-color: #0C083B;
+        display: inline-block;
+    }
+    .butt:hover {
+        background-color: #595494;
+        color: white;
+    }
+
 }
 
