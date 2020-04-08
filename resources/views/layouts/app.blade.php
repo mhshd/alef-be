@@ -1,4 +1,6 @@
 <html>
+<div style="width: 40%; float: right; text-align: right; font-family: IranNastaliq; font-size: xx-large;color: #373276"> ز اخترم نظری سعد در رهست که دوش</div>
+<div style="width:40%;  font-family: IranNastaliq; font-size: xx-large;color: #373276"> میان ماه و رخ یار من مقابله بود</div>
 <head>
     <title>کلبه ادبیات</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
@@ -44,16 +46,34 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{'home'}}">خانه</a>
+                        <a class="nav-link" href="/home">
+                            خانه
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{'critic'}}">نقد کتاب</a>
+                        <a class="nav-link" href="/critic">
+                            نقد کتاب
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{'introduce'}}"> معرفی کتاب</a>
+                        <a class="nav-link" href="/introduce">
+                            معرفی کتاب
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{'drafts'}}">دستنوشته های کیومرث حشمتی</a>
+                        <a class="nav-link" href="/drafts">
+                            دستنوشته ها
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/drafts">
+                           مقالات آموزشی
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="/drafts">
+                            پرسش و پاسخ
+                        </a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="get" role="search">

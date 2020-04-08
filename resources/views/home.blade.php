@@ -4,24 +4,40 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @if (is_object($posts))
-                <table class="table table-striped">
+                <table class="table table-striped" style="direction: rtl">
                     <thead>
                     <th>تاریخ انتشار</th>
                     <th>عنوان</th>
+                    <th>تعداد بازدید</th>
                     <th>نمایش مطلب</th>
                     </thead>
                     <tbody>
                     @foreach($posts as $post)
-                        <tr>
-                            <td>{{ $post->created_at }}</td>
+                        <tr style="direction: rtl">
+                            <td>{{ $post->createdDate }}</td>
                             <td>{{ $post->title }}</td>
+                            <td style="float: right">
+                                <svg class="bi bi-eye-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.5 8a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                                <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clip-rule="evenodd"/>
+                                 </svg>
+                                {{ $post->views }}
+                            </td>
                             <td>
                                 <a href="{{ route('post.show', $post->id) }}" class="btn btn-dark butt">ادامه مطلب</a>
                             </td>
+
                             @if(Auth::check())
                                 <td>
-                                    <a href="{{ route('post.delete', $post->id) }}" class="btn btn-dark butt">حذف مطلب</a>
+                                    <a href="{{ route('post.delete', $post->id) }}" class="btn btn-dark butt">
+                                        حذف مطلب
+                                    </a>
                                 </td>
+                                {{--<td>
+                                    <a href="{{ route('post.edit', $post->id) }}" class="btn btn-dark butt">
+                                        ویرایش مطلب
+                                    </a>
+                                </td>--}}
                             @endif
                         </tr>
                     @endforeach

@@ -11,14 +11,19 @@ class CreatePostsTable extends Migration
      *
      * @return void
      */
+
+    public $timestamps = false;
+
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->bigInteger('type');
-            $table->timestamps();
+            $table->bigInteger('type')->default(0);
+            $table->bigInteger('views')->default(0);
+            $table->text('createdDate');
+            $table->text('updatedDate');
         });
     }
 

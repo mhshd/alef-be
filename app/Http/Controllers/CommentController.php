@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['home', 'show','showResult']]);
+    }
     public function store(Request $request)
     {
         $comment = new comment();
         $comment->body = $request->get('comment_body');
         $comment->user()->associate($request->user());
+        $date = \Morilog\Jalali\Jalalian::forge('now')->format('%d %B ، %Y');
+        $comment->comment_Date = $date;
         $post_id = $request->get('post_id');
         $post = posts::query()->find($post_id);
-        if (!is_object($post)) echo "Yeah, I really have a problem here...";
+        $comment->timestamps = false;
         $post->comments()->save($comment);
         return back();
     }

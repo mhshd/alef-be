@@ -22,6 +22,7 @@
                                     <option id="critic" value="0">نقد ادبی</option>
                                     <option id="introduce" value="1">معرفی کتاب</option>
                                     <option id="draft" value="2">دستنوشته</option>
+                                    <option id="teach" value="3">دستنوشته</option>
                                 </select>
 
                             </ul>
