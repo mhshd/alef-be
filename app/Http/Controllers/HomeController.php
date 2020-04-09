@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\posts;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,7 +28,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        $posts = posts::all();
+        $posts = posts::paginate(5);
         return view('home', compact('posts'));
     }
 

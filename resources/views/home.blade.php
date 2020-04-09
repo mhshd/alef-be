@@ -33,11 +33,11 @@
                                         حذف مطلب
                                     </a>
                                 </td>
-                                {{--<td>
+                                <td>
                                     <a href="{{ route('post.edit', $post->id) }}" class="btn btn-dark butt">
                                         ویرایش مطلب
                                     </a>
-                                </td>--}}
+                                </td>
                             @endif
                         </tr>
                     @endforeach
@@ -51,5 +51,8 @@
                 @endif
             </div>
         </div>
+    </div>
+    <div class="pagination justify-content-center">
+        {{ $posts->links() }}
     </div>
 @endsection

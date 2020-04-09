@@ -1,3 +1,12 @@
+<script>
+    function validateForm() {
+        var x = document.forms["commentForm"]["comment_body"].value;
+        if (x == "") {
+            alert("لطفا نظر حود را وارد کنید");
+            return false;
+        }
+    }
+</script>
 @extends('layouts.app')
 <style>
     .display-comment .display-comment {
@@ -21,7 +30,7 @@
                         @include('comment_replies', ['comments' => $post->comments, 'post_id' => $post->id])
                         <hr />
                         <h4>افزودن نظر</h4>
-                        <form method="post" action="{{ route('comment.add') }}">
+                        <form name="commentForm" method="post" action="{{ route('comment.add') }}" onsubmit="return validateForm()"  required">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="comment_body" class="form-control" />

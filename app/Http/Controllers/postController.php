@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\posts;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['home','show']]);
-    }
-
     public function create()
     {
         return view('post');
@@ -25,7 +22,7 @@ class postController extends Controller
         $post->title = $request->get('title');
         $post->body = $request->get('body');
         $post->type= $request->typeChoice;
-        $date = \Morilog\Jalali\Jalalian::forge('now')->format('%d %B ، %Y');
+        $date = \Morilog\Jalali\Jalalian::forge('now')->format('%d %B %Y');
         $post->createdDate = $date;
         $post->updatedDate = $date;
         $post->timestamps = false;
@@ -36,11 +33,14 @@ class postController extends Controller
     }
     public function update(Request $request){
         $id = $request->typeChoice;
-        $post =  posts::query()->where('id', '=', $id)
-            ->update(array('title' => $request->get('title'), 'body'=>$request->get('body')));
         $date = \Morilog\Jalali\Jalalian::forge('now')->format('%d %B ، %Y');
-        $post->updatedDate = $date;
-        $post->save(['timestamps' => FALSE]);
+        DB::table('posts')
+            ->where('id', $id)->update(array(
+                'title' => $request->get('title'),
+                'body'=>$request->get('body') ,
+                'updatedDate'=> $date)
+            );
+
 
         return redirect('posts');
 
@@ -50,8 +50,8 @@ class postController extends Controller
     {
         $post = posts::query()->find($id);
         //increase post's view and save it to db
-        $view = $post->views;
-        $post->views = $view+1;
+        $post->views = $post->views +1;
+        $post->timestamps = false;
         $post->save();
 
         return view('show', compact('post'));
@@ -77,7 +77,7 @@ class postController extends Controller
     {
 
         $key = request('keyword');
-        $posts = posts::query()->where('title','LIKE','%'.$key.'%')->orWhere('body','LIKE','%'.$key.'%')->latest()->get();
+        $posts = posts::query()->where('title','LIKE','%'.$key.'%')->orWhere('body','LIKE','%'.$key.'%')->get();
 
         return view('home',compact('posts'));
 
@@ -85,24 +85,24 @@ class postController extends Controller
 
     public function critic()
     {
-        $posts = posts::all()->where('type','=',0);
+        $posts = posts::where('type','=',0)->paginate(5);
 
         return view('home', compact('posts'));
     }
     public function introduce()
     {
-        $posts = posts::all()->where('type','=',1);
+        $posts = posts::where('type','=',1)->paginate(5);
         return view('home', compact('posts'));
     }
 
     public function drafts()
     {
-        $posts = posts::all()->where('type','=',2);
+        $posts = posts::where('type','=',2)->paginate(5);
         return view('home', compact('posts'));
     }
     public function teach()
     {
-        $posts = posts::all()->where('type','=',3);
+        $posts = posts::where('type','=',3)->paginate(5);
 
         return view('home', compact('posts'));
     }

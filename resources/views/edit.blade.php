@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label class="label" style="float: right">متن پست : </label>
-                            <textarea name="body" rows="10" cols="30" class="form-control" value="{{$post->body}}" required></textarea>
+                            <textarea name="body" rows="10" cols="30" class="form-control" required>{{$post->body}}</textarea>
                         </div>
                         <ul class="navbar-nav mr-auto dropdown-item" style="direction: rtl">
                             <p style="text-align: right">این مطلب مربوط به کدام حوزه است؟</p>
@@ -30,7 +30,7 @@
                         </ul>
 
                         <div class="form-group" style="position: center">
-                            <button type="submit" id = {{$post->id}}>ارسال</button>
+                            <button type="submit" id = {{$post->id}}>ویرایش</button>
                         </div>
                     </form>
                 </div>

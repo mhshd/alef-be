@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class posts extends Model
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
+    protected $fillable = [
+        'title', 'body',
+    ];
+
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+        return $this->morphMany(Comment::class, 'commentable')->where('parent_id',0);
     }
 }
