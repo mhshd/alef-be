@@ -30,6 +30,8 @@ Route::get('/critic', 'postController@critic')->name('critic');
 Route::get('/introduce', 'postController@introduce')->name('introduce');
 Route::get('/drafts', 'postController@drafts')->name('drafts');
 Route::get('/teach', 'postController@teach')->name('teach');
+
+Route::get('/mostViewd', 'postController@mostViewd')->name('mostViewd');
 Route::get('/posts', 'HomeController@home')->name('posts');
 Route::get('/post/show/{id}', 'postController@show')->name('post.show');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');

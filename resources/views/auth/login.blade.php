@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <div style="text-align: center">ورود به سایت تنها برای ادمین سایت در دسترس است.</div>
 <div class="container" style="direction: rtl">
     <div class="row justify-content-center">
         <div class="col-md-8">

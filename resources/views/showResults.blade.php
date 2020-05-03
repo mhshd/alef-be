@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8" >
                 <div class="card" >
-                    @if (is_object($posts))
+                    @if(is_object($posts))
                         @foreach($posts as $post)
                             <div class="card-body"  style="direction: rtl; text-align: right">
 
@@ -34,9 +34,11 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="card-body">
+                    <div class="card-body">
+                        <p>
                             جستجوی شما نتیجه ای در بر نداشت
-                        </div>
+                        </p>
+                    </div>
                     @endif
                 </div>
             </div>

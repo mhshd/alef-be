@@ -1,3 +1,4 @@
+//this page provides a form to create new posts
 @extends('layouts.app')
 @section('content')
     <div class="container" style="direction: rtl">

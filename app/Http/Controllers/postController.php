@@ -14,8 +14,8 @@ class postController extends Controller
     {
         return view('post');
     }
-
-
+    
+    //this function sores posts in db
     public function store(Request $request)
     {
         $post =  new posts;
@@ -31,6 +31,8 @@ class postController extends Controller
         return redirect('posts');
 
     }
+    
+    //this function take the edition version of the posts and save it to db
     public function update(Request $request){
         $id = $request->typeChoice;
         $date = \Morilog\Jalali\Jalalian::forge('now')->format('%d %B ، %Y');
@@ -45,7 +47,8 @@ class postController extends Controller
         return redirect('posts');
 
     }
-
+    
+    //this function returns a specified post which client decided to view
     public function show($id)
     {
         $post = posts::query()->find($id);
@@ -56,16 +59,16 @@ class postController extends Controller
 
         return view('show', compact('post'));
     }
-
-
+    
+    //this function delete specified post by id
     public function delete($id)
     {
-        $post = posts::query()->find($id);
-        $post->delete();
-        $posts = posts::all();
+        posts::query()->where('id','=',$id)->delete();
 
-        return view('home', compact('posts'));
+        return redirect('posts');
     }
+    
+    //this function returns a form so the user can edit the posts
     public function edit($id)
     {
         $post = posts::query()->find($id);
@@ -75,11 +78,10 @@ class postController extends Controller
 
     public function search()
     {
-
         $key = request('keyword');
         $posts = posts::query()->where('title','LIKE','%'.$key.'%')->orWhere('body','LIKE','%'.$key.'%')->get();
 
-        return view('home',compact('posts'));
+        return view('showResults',compact('posts'));
 
     }
 
@@ -104,6 +106,13 @@ class postController extends Controller
     {
         $posts = posts::where('type','=',3)->paginate(5);
 
+        return view('home', compact('posts'));
+    }
+    
+    //this functin shows posts by number of views which client acceessed by footer
+    public function mostViewd()
+    {
+        $posts = posts::OrderBy('views', 'DESC')->paginate(5);
         return view('home', compact('posts'));
     }
 }

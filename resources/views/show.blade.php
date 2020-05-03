@@ -1,3 +1,5 @@
+<!--//this page provides comments under the posts and make a route to comment_replies view to see replies-->
+
 <script>
     function validateForm() {
         var x = document.forms["commentForm"]["comment_body"].value;
